@@ -4,7 +4,8 @@
 @section('content')
     <div class="mt-5">
         <div class="text-end">
-            <a class="btn btn-success mb-2" href="{{ route('participants.create') }}">Ajouter un participant</a>
+            <a class="btn btn-success mb-2" href="{{ route('participants.create') }}"><i class="fa fa-plus"></i> Ajouter un
+                participant</a>
         </div>
         @if (!$participants->isEmpty())
 
@@ -57,9 +58,9 @@
 
                             <td>
                                 <a href="{{ route('participants.edit', ['participant' => $participant]) }}"
-                                    class="btn btn-secondary"><i class="fa fa-whatsapp"></i>Modifier</a>
+                                    class="btn btn-secondary"><i class="fa fa-pencil me-2"></i></a>
                                 <a href="{{ route('participants.destroy', ['participant' => $participant]) }}"
-                                    class="btn btn-danger"><i class="fa fa-facebook"></i>Supprimer</a>
+                                    class="btn btn-danger"><i class="fa fa-trash me-2"></i></a>
                             </td>
 
                         </tr>

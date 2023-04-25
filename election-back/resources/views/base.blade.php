@@ -9,7 +9,7 @@
     <title>@yield('title')</title>
 </head>
 
-<body>
+<body class="bg-light">
     <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark navbar-dark">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
