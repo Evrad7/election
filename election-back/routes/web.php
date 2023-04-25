@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\ElectionController;
+use App\Http\Controllers\ElecteurController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RegionController;
+use App\Http\Controllers\ParticipantControler;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +19,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [ElectionController::class, "elections"])->name('elections');
+Route::get("/electeurs", [ElecteurController::class, "electeurs"])->name("electeurs");
+Route::get("/inscription", [AuthController::class, "inscription"])->name("inscription");
+Route::prefix("/regions")->name("region.")->controller(RegionController::class)->group(function(){
+    Route::get("/", "index")->name("index");
+    Route::get("/create", "create")->name("create");
+    Route::post("/store", "store")->name("store");
+    Route::get("/{region}/edit", "edit")->name("edit")->where(["region"=>"[0-9]+"]);
+    Route::post("/{region}/update", "update")->name("update")->where(["region"=>"[0-9]+"]);
+    Route::get("/{region}/delete", "destroy")->name("destroy")->where(["region"=>"[0-9]+"]);
+
 });
+
+Route::prefix("/participants")->name("participants.")->controller(ParticipantControler::class)->group(function(){
+    Route::get("/", "index")->name("index");
+    Route::get("/create", "create")->name("create");
+    Route::post("/store", "store")->name("store");
+    Route::get("{participant}/edit", "edit")->name("edit")->where(["participant"=>"[0-9]+"]);
+    Route::post("{participant}/update", "update")->name("update")->where(["participant"=>"[0-9]+"]);
+    Route::get("{participant}/delete", "destroy")->name("destroy")->where(["participant"=>"[0-9]+"]);
+
+});
+
